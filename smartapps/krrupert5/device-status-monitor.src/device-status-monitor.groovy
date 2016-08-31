@@ -3,6 +3,13 @@
  *
  *  Copyright 2016 Kyle Rupert
  *
+ *  Version 1.0.1	31 Aug 2016
+ * 
+ *  Version History
+ * 
+ *  1.0.0 	30 Aug 2016		Initial Release
+ *	1.0.1	31 Aug 2016		Fixed an issue with the threshold calculation
+ * 
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
  *
@@ -109,7 +116,7 @@ private checkDevice(device, checkState, hourInt)
     def state  = device.currentState(checkState)
     def time = state.date.time
     def elapsedTime = now() - time
-    def thresholdTime = hourInt * 1000 // ms = hours * 60 (min/hours) * 60 (sec/min) * 1000 (ms/sec) 
+    def thresholdTime = hourInt * 60 * 60 * 1000 // ms = hours * 60 (min/hours) * 60 (sec/min) * 1000 (ms/sec) 
 
     log.debug "Device Status Check - Device: $device , Elapsed Time: $elapsedTime , Threshold: $thresholdTime"
 
